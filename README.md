@@ -37,3 +37,7 @@ install react router
 
 Install cors: This library will allow all routes to share resources across origins.
   1. npm install --save-dev cors
+
+Install Steps for react:
+1. Install below command in root folder to create react app:
+   1. npx create-react-app react-front
