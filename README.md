@@ -41,3 +41,7 @@ Install cors: This library will allow all routes to share resources across origi
 Install Steps for react:
 1. Install below command in root folder to create react app:
    1. npx create-react-app react-front
+
+Start React:
+   go to react-front folder and type:
+   1. npm start
