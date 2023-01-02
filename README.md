@@ -1,7 +1,7 @@
 # node_react_employee_management
 Employee information project: frontend: react and backend: nodes
 
-Installation Steps:
+Installation Steps in node folder:
 1. Installing Node Using the Node Version Manager
     * curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh
     * curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
