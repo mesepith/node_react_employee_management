@@ -31,10 +31,6 @@ Install jsonwebtoken:
   1. npm install jsonwebtoken
 
 
-install react router
-  1. npm install react-router-dom
-
-
 Install cors: This library will allow all routes to share resources across origins.
   1. npm install --save-dev cors
 
@@ -45,3 +41,6 @@ Install Steps for react:
 Start React:
    go to react-front folder and type:
    1. npm start
+
+Install react router inside react-front folder:
+  1. npm install react-router-dom
