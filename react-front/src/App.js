@@ -1,7 +1,8 @@
 //import App.css
 import './App.css';
-import Nav from './Nav'
+import Nav from './components/Nav'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import Footer from './components/Footer';
 
 //create App
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/logout" element={<h1>Bye Bye</h1>} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
