@@ -23,6 +23,25 @@
   text-align: center;
 }
 
+.parentz{
+  margin: 0 auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.signup .signelm{
+  width: 70%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+}
+
+.signup .signupbtn{
+  width: 30%;
+  cursor: pointer;
+  background-color: rgb(1, 246, 164);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
