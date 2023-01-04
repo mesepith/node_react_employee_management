@@ -25,6 +25,10 @@ Install nodemon and dotenv:
   2. npm i dotenv
 Install react:
   1. npm install react
+  
+
+Install mongoose
+   1. npm i mongoose
 
 
 Install jsonwebtoken:
