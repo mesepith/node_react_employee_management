@@ -1,5 +1,5 @@
 //import react
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 //import navigate from react router dom to navigate to other pages 
 import {useNavigate} from 'react-router-dom';
 
@@ -15,6 +15,14 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     //define navigate const
     const navigate = useNavigate();
+
+    //Don't dispaly signup page using useEffect if user is already logged in
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user){
+            navigate('/');
+        }
+    });    
     
     const getData = () => {
         console.warn(name,email,password);
@@ -35,6 +43,10 @@ const SignUp = () => {
             console.log('data: ', data);
 
             if(data){
+
+                //store data in local storage with user key
+                localStorage.setItem('user', JSON.stringify(data));
+
                 //navigate to List url
                 navigate('/');
             }
