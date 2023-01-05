@@ -1,5 +1,10 @@
 //import react
 import React,{useState} from 'react';
+//import navigate from react router dom to navigate to other pages 
+import {useNavigate} from 'react-router-dom';
+
+
+const DOMAIN = 'http://dev1.switchme.in:5000';
 
 //create function
 const SignUp = () => {
@@ -8,9 +13,32 @@ const SignUp = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    //define navigate const
+    const navigate = useNavigate();
     
     const getData = () => {
         console.warn(name,email,password);
+        //post data to node server using fetch api and async await method 
+        fetch(`${DOMAIN}/api/insert-members`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('data: ', data);
+
+            if(data){
+                //navigate to List url
+                navigate('/');
+            }
+        })
     }
 
 
