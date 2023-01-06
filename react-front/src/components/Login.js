@@ -1,5 +1,7 @@
 //import react 
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+//import navigate from react router dom to navigate to other pages
+import {useNavigate} from 'react-router-dom';
 
 const DOMAIN = 'http://dev1.switchme.in:5000';
 
@@ -8,6 +10,16 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    //Don't dispaly login page using useEffect if user is already logged in
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user){
+            navigate('/');
+        }
+    });
+
 
     //create LoginCreds function to post data to node server
     const LoginCreds = async (e) => {
@@ -31,12 +43,9 @@ const Login = () => {
 
         if(data._id){
             localStorage.setItem('user', JSON.stringify(data));
-            window.location.href = '/';
+            navigate('/');
         }
     }
-
-
-
 
     return (
         <div className='parentz'>
