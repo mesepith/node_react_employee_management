@@ -21,13 +21,38 @@ app.use(cors());
 app.post('/api/insert-members', async (req, res) => {
     console.log('req.body: ', req.body);
     try {
-        const member = new Members(req.body);
-        await member.save();
-        res.status(201).send(member);
+        let member = new Members(req.body);
+        let output = await member.save();
+        output = output.toObject();
+        delete output.password;
+
+        res.status(201).send(output);
     } catch (e) {
         res.status(400).send(e);
     }
 });
+
+//create login api
+app.post('/api/login', async (req, res) => {
+    
+    //check empty email and password
+    if(!req.body.email || !req.body.password){
+        return res.status(400).send({ error: 'Please provide email and password' });
+    }
+
+    try {
+        const member = await Members.findOne(req.body).select("-password");
+
+        if(!member){
+            return res.status(400).send({ error: 'Login failed! Check authentication credentials' });
+        }
+        
+        res.status(201).send(member);
+    } catch (e) {
+        res.status(400).send({ error: 'Login failed! Check authentication credentials' });
+    }
+});
+
 
 
 app.listen(5000);
