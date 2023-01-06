@@ -60,7 +60,7 @@ const SignUp = () => {
             <input value={name} onChange={(e)=>setName(e.target.value)} className='signelm' type="text" name="name" placeholder='Your Name' />
             <input value={email} onChange={(e)=>setEmail(e.target.value)} className='signelm' type="email" name="email" placeholder='Your Email' />
             <input value={password} onChange={(e)=>setPassword(e.target.value)} className='signelm' type="password" name="password" placeholder='Your Password' />
-            <button onClick={getData} className='signelm signupbtn' type="button">Submit</button>
+            <button onClick={getData} className='signelm actbtn' type="button">Submit</button>
         </div>
     )
 }

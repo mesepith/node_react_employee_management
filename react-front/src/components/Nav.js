@@ -25,6 +25,7 @@ const Nav = () => {
                 <li>
                     {!user ? <Link to="/signup">Register</Link> : <Link onClick={logout} to="/signup">Logout</Link>}
                 </li>
+                <li><Link to="/login">Login</Link></li>
             </ul>
         </div>
     )

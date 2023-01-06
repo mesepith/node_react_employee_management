@@ -29,14 +29,14 @@
   padding: 10px;
 }
 
-.signup .signelm{
+.parentz .signelm{
   width: 70%;
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #ccc;
 }
 
-.signup .signupbtn{
+.parentz .actbtn{
   width: 30%;
   cursor: pointer;
   background-color: rgb(1, 246, 164);
