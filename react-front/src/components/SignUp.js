@@ -42,10 +42,11 @@ const SignUp = () => {
         .then(data => {
             console.log('data: ', data);
 
-            if(data){
+            if(data.auth && data.member._id){
 
                 //store data in local storage with user key
-                localStorage.setItem('user', JSON.stringify(data));
+                localStorage.setItem('user', JSON.stringify(data.member));
+                localStorage.setItem('token', JSON.stringify(data.auth));
 
                 //navigate to List url
                 navigate('/');

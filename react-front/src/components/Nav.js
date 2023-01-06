@@ -14,6 +14,7 @@ const Nav = () => {
     //create logout function
     const logout = () => {
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         navigate('/signup');
     }
 

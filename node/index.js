@@ -9,6 +9,11 @@ require('./db/config');
 //call members
 const Members = require('./db/Members');
 
+//define jwt token 
+const jwt = require('jsonwebtoken');
+//define jwt secret key
+const jwtKey = 'employee_management_by_zahir';
+
 //define app
 const app = express();
 
@@ -21,12 +26,21 @@ app.use(cors());
 app.post('/api/insert-members', async (req, res) => {
     console.log('req.body: ', req.body);
     try {
-        let member = new Members(req.body);
-        let output = await member.save();
-        output = output.toObject();
-        delete output.password;
+        let returnz = new Members(req.body);
+        let member = await returnz.save();
+        member = member.toObject();
+        delete member.password;
 
-        res.status(201).send(output);
+         //jwt sign method to create token with payload and secret key and error first callback function 
+        const token = jwt.sign({ member }, jwtKey, {expiresIn: "5h"}, (err, token) => {
+            if(err){
+                return res.status(400).send({ error: 'Login failed! Check authentication credentials' });
+            }
+            //send token in response
+            res.send({ member, auth: token });
+        });
+
+        // res.status(201).send(output);
     } catch (e) {
         res.status(400).send(e);
     }
@@ -46,8 +60,18 @@ app.post('/api/login', async (req, res) => {
         if(!member){
             return res.status(400).send({ error: 'Login failed! Check authentication credentials' });
         }
+
+        //jwt sign method to create token with payload and secret key and error first callback function 
+        const token = jwt.sign({ member }, jwtKey, {expiresIn: "5h"}, (err, token) => {
+            if(err){
+                return res.status(400).send({ error: 'Login failed! Check authentication credentials' });
+            }
+            //send token in response
+            res.send({ member, auth: token });
+        });
+
         
-        res.status(201).send(member);
+        // res.status(201).send(member);
     } catch (e) {
         res.status(400).send({ error: 'Login failed! Check authentication credentials' });
     }

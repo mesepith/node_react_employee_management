@@ -41,9 +41,13 @@ const Login = () => {
         //if data has error key then display error message
         if(data.error){ alert(data.error); return false};
 
-        if(data._id){
-            localStorage.setItem('user', JSON.stringify(data));
+
+        if(data.auth && data.member._id){
+            localStorage.setItem('user', JSON.stringify(data.member));
+            localStorage.setItem('token', JSON.stringify(data.auth));
             navigate('/');
+        }else{
+            alert('Something went wrong, please try again later');
         }
     }
 
