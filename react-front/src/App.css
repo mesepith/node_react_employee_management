@@ -42,6 +42,17 @@
   background-color: rgb(1, 246, 164);
 }
 
+.menu-right{
+  text-align: right;
+}
+
+.dash_logoz{
+  width: 40px;
+  float: left;
+  margin-top: 5px;
+  margin-left: 22px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
