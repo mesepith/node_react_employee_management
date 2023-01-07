@@ -77,6 +77,37 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+// verify token middleware function 
+const verifyToken = (req, res, next) => {
+    //get auth header value
+    const bearerHeader = req.headers['authorization'];
+    //check if bearer is undefined
+    if(typeof bearerHeader !== 'undefined'){
+        //split at the space
+        const bearer = bearerHeader.split(' ');
+        //get token from array
+        const bearerToken = bearer[1];
+        //set the token
+        req.token = bearerToken;
+
+        //verify jwtKey of jwt token
+        jwt.verify(req.token, jwtKey, (err, authData) => {
+            if(err){
+                res.sendStatus(403);
+            } else {
+                //next middleware
+                next();
+            }
+        });
+        
+    } else {
+        //forbidden
+        res.sendStatus(403);
+    }
+}
+
+
+
 
 
 app.listen(5000);
