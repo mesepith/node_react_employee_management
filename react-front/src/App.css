@@ -38,6 +38,7 @@
   width: 30%;
   cursor: pointer;
   background-color: rgb(1, 246, 164);
+  margin-bottom: 10%;
 }
 
 /* auto scroll html page */
@@ -56,7 +57,12 @@ html {
   text-align: center;
 }
 
-
+.error-inp{
+  color: crimson;
+  font-size: 12px;
+  margin-top: 1px;
+  margin-left: 11px;
+}
 
 .menu-right{
   text-align: right;

@@ -11,6 +11,9 @@ const AddEmployee = () => {
         const [age, setAge] = useState('');
         const [salary, setSalary] = useState('');
         const [department, setDepartment] = useState('');
+        //set error
+        const [error, setError] = useState(false);
+
         const token = JSON.parse(localStorage.getItem('token'));
         const user = JSON.parse(localStorage.getItem('user'));
     
@@ -21,11 +24,12 @@ const AddEmployee = () => {
 
             //before post data to node server check if all fields are filled or not, age and salary should be number 
             if(!employee_id || !name || !age || !salary || !department){
-                alert('Please fill all fields');
+                setError(true);
                 return false;
             }
             if(isNaN(age) || isNaN(salary)){
                 alert('Age and Salary should be number');
+                setError(true);
                 return false;
             }
             
@@ -78,11 +82,17 @@ const AddEmployee = () => {
             <h1>Add Employee</h1>
             <form>
                 <input type="text" className='signelm' placeholder="Employee ID" onChange={(e)=>setEmployee_id(e.target.value)} value={employee_id} />
+                {error && !employee_id && <p className="error-inp">Enter Valid Employee Id</p>}
+
                 <input type="text" className='signelm' placeholder="Name" onChange={(e)=>setName(e.target.value)} value={name} />
+                {error && !name && <p className="error-inp">Enter Valid Name</p>}
+
                 <input type="number" className='signelm' placeholder="Age" onChange={(e)=>setAge(e.target.value)} value={age} />
+                {error && !age && <p className="error-inp">Enter Valid Age</p>}
+
                 <input type="number" className='signelm' placeholder="Salary" onChange={(e)=>setSalary(e.target.value)} value={salary} />
-                {/* <input type="text" className='signelm' placeholder="Department" onChange={(e)=>setDepartment(e.target.value)} value={department} /> */}
-                {/* //create select tag for department and add options to select tag using map function and store selected option in department state variable using setDepartment function and set selected option in department state variable as value of select tag using department state variable  */}
+                {error && !salary && <p className="error-inp">Enter Valid Salary</p>}
+
                 <select className='signelm slcttag' onChange={(e)=>setDepartment(e.target.value)} value={department}>
                     <option value="">Select Department</option>
                     {
@@ -91,6 +101,8 @@ const AddEmployee = () => {
                         })
                     }
                 </select>
+                {error && !department && <p className="error-inp">Select Department</p>}
+
                 <button onClick={addEmployee} className='signelm actbtn' id='addEmployeeBtn' type="submit">Add Employee</button>
             </form>
         </div>
