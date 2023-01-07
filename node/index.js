@@ -8,6 +8,8 @@ require('./db/config');
 
 //call members
 const Members = require('./db/Members');
+//load employee model
+const Employee = require('./db/Employee');
 
 //define jwt token 
 const jwt = require('jsonwebtoken');
@@ -77,6 +79,7 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+
 // verify token middleware function 
 const verifyToken = (req, res, next) => {
     //get auth header value
@@ -99,12 +102,26 @@ const verifyToken = (req, res, next) => {
                 next();
             }
         });
-        
+
     } else {
         //forbidden
         res.sendStatus(403);
     }
 }
+
+
+//create add product api with verify token middleware function 
+app.post('/api/add-employee', verifyToken, async (req, res) => {
+    console.log('req.body: ', req.body);
+    try {
+        let returnz = new Employee(req.body);
+        let employee = await returnz.save();
+        res.status(201).send(employee);
+    } catch (e) { // catch any error
+        res.status(400).send({ error: 'Add employee failed! Check authentication credentials' });
+    }
+});
+       
 
 
 
