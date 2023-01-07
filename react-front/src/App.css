@@ -46,6 +46,57 @@ html {
   scroll-behavior: smooth;
 }
 
+/* design html table */
+.emp-list-table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  margin-bottom: 10%;
+}
+
+.emp-list-table th{
+  background-color: rgb(1, 30, 20);
+  color: #fff;
+  padding: 10px;
+}
+.emp-list-table tr{
+  border: 1px solid #ccc;
+}
+
+.emp-list-table td{
+  padding: 10px;
+}
+.emp-list-table tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+.emp-list-table tr:hover{
+  background-color: #ddd;
+}
+
+/* Design edit button in emp-list-table  */
+.emp-list-table tr td .action-btn{
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.emp-list-table tr td .edit-btn{
+  background-color: #4CAF50;
+}
+.emp-list-table tr td .delete-btn{
+  background-color: #f44336;
+}
+
+
+.emp-list-table tr th{
+  text-align: left;
+}
+
 /* Footer should be at bottom of all html pages */
 .footer {
   position: fixed;

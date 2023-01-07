@@ -124,7 +124,7 @@ app.post('/api/add-employee', verifyToken, async (req, res) => {
        
 
 //create get employee api with verify token middleware function
-app.get('/api/get-employee', verifyToken, async (req, res) => {
+app.get('/api/get-all-employee-list', verifyToken, async (req, res) => {
     try {
         const employee = await Employee.find();
         res.status(201).send(employee);
