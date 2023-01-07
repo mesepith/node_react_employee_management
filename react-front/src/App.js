@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Footer from './components/Footer';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+import AddEmployee from './components/AddEmployee';
 
 //import PrivateRoute from PrivateComponent
 import PrivateRoute from './components/PrivateComponent';
@@ -19,7 +20,7 @@ function App() {
         <Routes>
           < Route element={<PrivateRoute />}>
             <Route path="/" element={<h1>Employee List</h1>} />
-            <Route path="/add" element={<h1>Add Employee</h1>} />
+            <Route path="/add" element={<AddEmployee />} />
             <Route path="/logout" element={<h1>Bye Bye</h1>} />
           </Route>
 

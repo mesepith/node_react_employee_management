@@ -13,15 +13,6 @@
   padding: 5px;
   text-decoration: none;
 }
-.footer{
-  position: absolute;
-  width: 100%;
-  background-color: rgb(1, 30, 20);
-  padding: 5px;
-  bottom: 0;
-  color: #fff;
-  text-align: center;
-}
 
 .parentz{
   margin: 0 auto;
@@ -36,11 +27,36 @@
   border: 1px solid #ccc;
 }
 
+.parentz .slcttag{
+  width: 73%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+}
+
 .parentz .actbtn{
   width: 30%;
   cursor: pointer;
   background-color: rgb(1, 246, 164);
 }
+
+/* auto scroll html page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Footer should be at bottom of all html pages */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(1, 30, 20);
+  color: white;
+  text-align: center;
+}
+
+
 
 .menu-right{
   text-align: right;
