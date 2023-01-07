@@ -110,7 +110,7 @@ const verifyToken = (req, res, next) => {
 }
 
 
-//create add product api with verify token middleware function 
+//create add employee api with verify token middleware function 
 app.post('/api/add-employee', verifyToken, async (req, res) => {
     console.log('req.body: ', req.body);
     try {
@@ -123,8 +123,15 @@ app.post('/api/add-employee', verifyToken, async (req, res) => {
 });
        
 
-
-
+//create get employee api with verify token middleware function
+app.get('/api/get-employee', verifyToken, async (req, res) => {
+    try {
+        const employee = await Employee.find();
+        res.status(201).send(employee);
+    } catch (e) { // catch any error
+        res.status(400).send({ error: 'Get employee failed! Check authentication credentials' });
+    }
+});
 
 
 app.listen(5000);
