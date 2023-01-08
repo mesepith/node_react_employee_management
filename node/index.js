@@ -159,4 +159,22 @@ app.get('/api/get-employee/:id', verifyToken, async (req, res) => {
     }
 });
 
+//update employee by id api with verify token middleware function
+app.put('/api/update-employee/:id', verifyToken, async (req, res) => {
+    try {
+        const employee = await Employee.findByIdAndUpdate(
+            {_id: req.params.id},
+            {$set: req.body},
+            {new: true}
+        );
+        if(!employee){
+            return res.status(404).send({ error: 'Update employee failed! Check data and try again' });
+        }
+        res.status(201).send(employee);
+    } catch (e) { // catch any error
+        res.status(400).send({ error: 'Update employee failed! Check authentication credentials' });
+    }
+});
+
+
 app.listen(5000);
