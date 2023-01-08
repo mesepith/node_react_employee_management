@@ -87,6 +87,7 @@ html {
 }
 .emp-list-table tr td .edit-btn{
   background-color: #4CAF50;
+  text-decoration: none;
 }
 .emp-list-table tr td .delete-btn{
   background-color: #f44336;

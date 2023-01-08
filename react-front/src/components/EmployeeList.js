@@ -1,5 +1,7 @@
 //import react
 import React,{useState, useEffect} from 'react';
+//import link
+import { Link } from 'react-router-dom';
 
 const DOMAIN = 'http://dev1.switchme.in:5000';
 
@@ -81,7 +83,9 @@ const EmployeeList = () => {
                             <td>{employee.salary}</td>
                             <td>{employee.department}</td>
                             <td>
-                                <button className='action-btn edit-btn'>Edit</button>
+                                <button className='action-btn edit-btn'>
+                                    <Link to={'/edit/' + employee._id}>Edit</Link>
+                                </button>
                                 <button className='action-btn delete-btn' onClick={()=>deleteEmployee(employee._id)} >Delete</button>
                             </td>
                         </tr>

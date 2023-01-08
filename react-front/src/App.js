@@ -7,6 +7,8 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import AddEmployee from './components/AddEmployee';
 import EmployeeList from './components/EmployeeList';
+import EditEmployee from './components/EditEmployee';
+
 
 
 //import PrivateRoute from PrivateComponent
@@ -23,6 +25,7 @@ function App() {
           < Route element={<PrivateRoute />}>
             <Route path="/" element={<EmployeeList />} />
             <Route path="/add" element={<AddEmployee />} />
+            <Route path="/edit/:id" element={<EditEmployee />} />
             <Route path="/logout" element={<h1>Bye Bye</h1>} />
           </Route>
 
