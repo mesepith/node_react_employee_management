@@ -1,7 +1,7 @@
 //import react 
 import React, { useState, useEffect } from 'react';
 //import useParams
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const DOMAIN = 'http://dev1.switchme.in:5000';
 
@@ -17,6 +17,7 @@ const EditEmployee = () => {
     });
 
     const params = useParams();
+    const navigate = useNavigate();
 
     //get token from local storage
     const token = JSON.parse(localStorage.getItem('token'));
@@ -44,6 +45,25 @@ const EditEmployee = () => {
     const updateEmployee = async (e) => {
         console.log('employee z : ' + JSON.stringify(employee));
         e.preventDefault();
+
+        //validate data
+        if(employee.employee_id === '' || employee.name === '' || employee.age === '' || employee.salary === '' || employee.department === ''){
+            
+            setError('Please fill all fields');
+            return;
+        }
+        //validate salary and age should be number only 
+        if(isNaN(employee.salary) || isNaN(employee.age)){
+            
+            setError('Salary and age should be number only');
+            return;
+        }
+
+        //Give loading text to update button on click and disable update button
+        document.getElementById('updateEmployeeBtn').innerHTML = 'Loading...';
+        document.getElementById('updateEmployeeBtn').disabled = true;
+
+
         const res = await fetch(DOMAIN + '/api/update-employee/' + params.id, {
             method: 'PUT',
             headers: {
@@ -54,10 +74,17 @@ const EditEmployee = () => {
         });
         const data = await res.json();
         console.log('data: ', data);
+
+        //display error message if any error occurs while fetching data from node server
+        document.getElementById('updateEmployeeBtn').innerHTML = 'Update';
+        document.getElementById('updateEmployeeBtn').disabled = false;
+
         if(data.error){
             setError(data.error);
         }else{
-            setEmployee(data);
+            alert('Successfully updated');
+            navigate('/');
+            // setEmployee(data);
         }
     }
 
@@ -83,9 +110,10 @@ const EditEmployee = () => {
                     <option value="Other">Other</option>
                 </select>
 
-                <button className='signelm actbtn' onClick={updateEmployee}>Update</button>
+                {error && <p className='error-inp'>{error}</p>}
+                <button className='signelm actbtn'  id='updateEmployeeBtn' onClick={updateEmployee}>Update</button>
             </form>
-            {error && <p className='error'>{error}</p>}
+            
         </div>
 
     )
