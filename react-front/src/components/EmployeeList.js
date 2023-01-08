@@ -33,6 +33,30 @@ const EmployeeList = () => {
         getEmployees();
     }, [token]);  
 
+    //delete employee by id function using fetch api and async await method and pass token in header to authenticate user, on click delete button ask user to confirm delete action and display error message if any error occurs while fetching data from node server
+    const deleteEmployee = async (id) => {
+
+        if(!window.confirm('Are you sure you want to delete this employee?')){
+            return;
+        }
+        const res = await fetch(DOMAIN + '/api/delete-employee/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const data = await res.json();
+        console.log('data: ', data);
+        if(data.error){
+            setError(data.error);
+        }else{
+            setEmployees(employees.filter(employee => employee._id !== id));
+        }
+    }
+
+
+
     return (
         <div className='parentz'>
             <h1>Employee List</h1>
@@ -58,7 +82,7 @@ const EmployeeList = () => {
                             <td>{employee.department}</td>
                             <td>
                                 <button className='action-btn edit-btn'>Edit</button>
-                                <button className='action-btn delete-btn'>Delete</button>
+                                <button className='action-btn delete-btn' onClick={()=>deleteEmployee(employee._id)} >Delete</button>
                             </td>
                         </tr>
                     ))}
