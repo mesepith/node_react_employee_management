@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const employeeSchema = new mongoose.Schema({
     employee_id: String,
     name: String,
-    age: Number,
-    salary: Number,
+    age: String,
+    salary: String,
     department: String,
     added_by_user_id: String,
 });
