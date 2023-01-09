@@ -176,5 +176,23 @@ app.put('/api/update-employee/:id', verifyToken, async (req, res) => {
     }
 });
 
+//search employees collection by employee_id(string), name(string), age(number), salary(number), department(string). Use like query while searching 
+app.get('/api/search-employee/:key', verifyToken, async (req, res) => {
+    try {
+        const employee = await Employee.find({$or: [
+            {employee_id: {$regex: req.params.key, $options: 'i'}},
+            {name: {$regex: req.params.key, $options: 'i'}},
+            {department: {$regex: req.params.key, $options: 'i'}}
+        ]});
+        if(!employee){
+            return res.status(404).send({ error: 'Search employee failed! Check data and try again' });
+        }
+        res.status(201).send(employee);
+    } catch (e) { // catch any error
+        res.status(400).send({ error: 'Error is ' + e });
+    }
+});
+
+
 
 app.listen(5000);
