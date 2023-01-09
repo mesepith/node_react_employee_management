@@ -176,12 +176,14 @@ app.put('/api/update-employee/:id', verifyToken, async (req, res) => {
     }
 });
 
-//search employees collection by employee_id(string), name(string), age(number), salary(number), department(string). Use like query while searching 
+//search employees collection by employee_id(string), name(string), department(string). Use like query while searching 
 app.get('/api/search-employee/:key', verifyToken, async (req, res) => {
     try {
         const employee = await Employee.find({$or: [
             {employee_id: {$regex: req.params.key, $options: 'i'}},
             {name: {$regex: req.params.key, $options: 'i'}},
+            {age: {$regex: req.params.key, $options: 'i'}},
+            {salary: {$regex: req.params.key, $options: 'i'}},
             {department: {$regex: req.params.key, $options: 'i'}}
         ]});
         if(!employee){
