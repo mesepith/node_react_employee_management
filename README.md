@@ -6,6 +6,7 @@ Installation Steps in node folder:
     * curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh
     * curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
     * source ~/.bashrc
+    * You can check latest release of nvm from https://github.com/nvm-sh/nvm/releases/
 2. List node versions:
     * nvm list-remote
 3. Install node version
