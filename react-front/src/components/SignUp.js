@@ -25,6 +25,13 @@ const SignUp = () => {
     });    
     
     const getData = () => {
+
+        //compulsory fields validation
+        if(!name || !email || !password){
+            alert('Please fill all the fields');
+            return false;
+        }
+
         console.warn(name,email,password);
         //post data to node server using fetch api and async await method 
         fetch(`${DOMAIN}/api/insert-members`, {
