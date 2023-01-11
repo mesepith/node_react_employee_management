@@ -33,6 +33,12 @@ const SignUp = () => {
             return false;
         }
 
+        //email validation
+        if(!email.includes('@') || !email.includes('.')){
+            setError('Please enter valid email');
+            return false;
+        }
+
         console.warn(name,email,password);
         //post data to node server using fetch api and async await method 
         fetch(`${DOMAIN}/api/insert-members`, {
