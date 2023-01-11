@@ -13,6 +13,7 @@ const SignUp = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     //define navigate const
     const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const SignUp = () => {
 
         //compulsory fields validation
         if(!name || !email || !password){
-            alert('Please fill all the fields');
+            setError('Please fill all the fields');
             return false;
         }
 
@@ -68,6 +69,7 @@ const SignUp = () => {
             <input value={name} onChange={(e)=>setName(e.target.value)} className='signelm' type="text" name="name" placeholder='Your Name' />
             <input value={email} onChange={(e)=>setEmail(e.target.value)} className='signelm' type="email" name="email" placeholder='Your Email' />
             <input value={password} onChange={(e)=>setPassword(e.target.value)} className='signelm' type="password" name="password" placeholder='Your Password' />
+            {error && <p className='error-inp'> {error} </p>}
             <button onClick={getData} className='signelm actbtn' type="button">Submit</button>
         </div>
     )
